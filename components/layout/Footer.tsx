@@ -8,12 +8,12 @@ const FooterLink = ({ href, children }: { href: string; children: React.ReactNod
   </a>
 );
 
-const FooterSection = ({ 
-  title, 
-  links 
-}: { 
-  title: string; 
-  links: Array<{ href: string; label: string; }> 
+const FooterSection = ({
+  title,
+  links
+}: {
+  title: string;
+  links: Array<{ href: string; label: string; }>
 }) => (
   <div>
     <h3 className="text-neutral-100 font-semibold mb-4">{title}</h3>
@@ -48,7 +48,7 @@ export const Footer = () => {
 const FooterLove = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
-      <p>Made with <Heart className="w-4 h-4 inline-block text-red-500" /> by <a className='underline' target='_' href='https://github.com/caznix'>Caznix</a></p>
+      <p>Made with <Heart className="w-4 h-4 inline-block text-red-500" /> by <a className='underline' target='_' href='https://github.com/Starlight-Industries'>Starlight-industries</a></p>
     </div>
   )
 }

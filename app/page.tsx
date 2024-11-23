@@ -226,7 +226,7 @@ const CometLanding = () => {
       {/* Footer */}
       <footer className="border-t border-blue-950/30 py-8">
         <div className="container mx-auto px-4 text-center text-gray-500">
-          <p>© 2024 Comet Package Manager MIT License.</p>
+          <p>© 2024 Starlight-industries. Licensed under MIT.</p>
         </div>
       </footer>
     </div>
