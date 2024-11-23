@@ -1,10 +1,103 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download, Package, Terminal, Github, Star, Clock, Shield, ChevronRight, Command } from 'lucide-react';
 import { Vortex } from '../components/ui/vortex';
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
 
+interface StatCardProps {
+  number: string;
+  label: string;
+}
 const CometLanding = () => {
+  const packages = [
+    "vesktop",
+    "npm",
+    "bun",
+    "deno",
+    "grip 👋",
+    "docker",
+    "docker-compose",
+    "tailscale",
+    "firefox",
+    "zen-browser",
+    "vlc",
+    "gimp",
+    "libreoffice",
+    "visual-studio-code",
+    "intellij-idea",
+    "obs-studio",
+    "krita",
+    "blender",
+    "inkscape",
+    "spotify",
+    "discord",
+    "telegram",
+    "thunderbird",
+    "audacity",
+    "kdenlive",
+    "virtualbox",
+    "qemu",
+    "flatpak",
+    "snapd",
+    "wine",
+    "lutris",
+    "steam",
+    "git",
+    "gnome-terminal",
+    "alacritty",
+    "htop",
+    "neovim",
+    "emacs",
+    "anki",
+    "keepassxc",
+    "bitwarden",
+    "nextcloud",
+    "flameshot",
+    "signal-desktop",
+    "teams",
+    "zoom",
+    "gparted",
+    "btop",
+    "audacious",
+    "clementine",
+    "zsh",
+    "oh-my-zsh",
+    "fish",
+    "fonts-noto",
+    "fonts-jetbrains-mono",
+    "rclone",
+    "mpv",
+    "plex-media-server",
+    "jellyfin",
+    "qbittorrent",
+    "transmission",
+    "grub-customizer",
+    "etcher",
+    "clamav",
+    "godot",
+
+];
+  const [currentPackage, setCurrentPackage] = useState(packages[0]);
+  const [isVisible, setisVisible] = useState(true);
+  useEffect(() => {
+    const packageInterval = setInterval(() => {
+      setisVisible(false);
+      setTimeout(() => {
+        setCurrentPackage(prevPackage => {
+          const currentIndex = packages.indexOf(prevPackage);
+          return packages[(currentIndex + 1) % packages.length]
+        });
+        setisVisible(true)
+      }, 150 /* transition time */);
+    }, 1500 /* change interval */);
+
+    return () => clearInterval(packageInterval);
+  }, []);
   return (
     <div className="min-h-screen bg-black text-gray-100">
 
@@ -42,28 +135,42 @@ const CometLanding = () => {
           </div>
         </div>
 
-      {/* Terminal Preview */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto bg-gray-900 rounded-xl p-1">
-          <div className="bg-black rounded-lg p-4 font-mono text-sm">
-            <div className="flex items-center space-x-2 mb-4 text-gray-500">
-              <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <span className="text-blue-400">$</span>
-                <span className="text-gray-300">comet install express</span>
+        {/* Terminal Preview */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto bg-gray-900 rounded-xl p-1">
+            <div className="bg-black rounded-lg p-4 font-mono text-sm">
+              <div className="flex items-center space-x-2 mb-4 text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-red-500/20"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500/20"></div>
               </div>
-              <div className="text-gray-500">📦 Resolving dependencies...</div>
-              <div className="text-gray-400">✨ Dependencies installed in 0.8s</div>
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                  <span className="text-blue-400">$</span>
+                  <span className="text-gray-300">comet install {' '}
+                    <span
+                      className={`
+                        inline-block
+                        transition-all
+                        duration-600
+                        ${isVisible
+                          ? 'opacity-100 translate-y-0'
+                          : 'opacity-0 -translate-y-2'
+                        }
+                        `}
+                    >
+                      {currentPackage}
+                    </span>
+                  </span>
+                </div>
+                <div className="text-gray-500">📦 Resolving dependencies...</div>
+                <div className="text-gray-400">✨ Dependencies installed in 0.8s</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </Vortex>
-      
+
 
       {/* Features Section */}
       <div className="py-24">
@@ -72,17 +179,17 @@ const CometLanding = () => {
             Why Choose Comet?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
+            <FeatureCard
               icon={<Clock className="text-blue-400" />}
               title="Blazing Fast"
               description="Up to 10x faster than traditional package managers"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Shield className="text-blue-400" />}
               title="Ultra Secure"
               description="Built-in vulnerability scanning and checksum verification"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={<Command className="text-blue-400" />}
               title="Developer First"
               description="Intuitive CLI with smart defaults and powerful customization"
@@ -119,7 +226,7 @@ const CometLanding = () => {
       {/* Footer */}
       <footer className="border-t border-blue-950/30 py-8">
         <div className="container mx-auto px-4 text-center text-gray-500">
-          <p>© 2024 Comet Package Manager. MIT License.</p>
+          <p>© 2024 Comet Package Manager MIT License.</p>
         </div>
       </footer>
     </div>
@@ -127,7 +234,7 @@ const CometLanding = () => {
 };
 
 // Feature Card Component
-const FeatureCard = ({ icon, title, description }) => (
+const FeatureCard = ({ icon, title, description }: FeatureCardProps) => (
   <div className="bg-gray-900/50 p-8 rounded-lg hover:bg-gray-900 transition-colors border border-gray-800/50 hover:border-gray-800">
     <div className="mb-4">
       {icon}
@@ -138,7 +245,7 @@ const FeatureCard = ({ icon, title, description }) => (
 );
 
 // Stat Card Component
-const StatCard = ({ number, label }) => (
+const StatCard = ({ number, label }: StatCardProps) => (
   <div>
     <div className="text-4xl font-bold text-blue-400 mb-2">{number}</div>
     <div className="text-gray-400">{label}</div>
