@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -31,6 +32,8 @@ const nextConfig: NextConfig = {
     ],
   },
   output: "export",
+  basePath: "/comet",
+  assetPrefix: "/comet/",
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
