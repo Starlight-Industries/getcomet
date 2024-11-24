@@ -32,8 +32,8 @@ const nextConfig: NextConfig = {
     ],
   },
   output: "export",
-  basePath: "/comet",
-  assetPrefix: "/comet/",
+  basePath: "/getcomet",
+  assetPrefix: "/getcomet/",
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
